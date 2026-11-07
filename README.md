@@ -1,5 +1,7 @@
 # JPVerify MCP
 
+[![mcptry](https://mcptry.com/badge/com.jpverify/jpverify)](https://mcptry.com/servers/com.jpverify/jpverify)
+
 <img src="https://www.jpverify.com/logo-512.png" alt="JPVerify" width="96" align="right">
 
 Remote MCP server for Japanese business identity checks and Japanese document OCR: NTA corporate-number and qualified-invoice (T-number) verification, address normalization and validation, invoice / receipt / business-card OCR, supplier resolution, and EU VAT / Peppol counterparty checks.
