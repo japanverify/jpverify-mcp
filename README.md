@@ -43,6 +43,8 @@ Generic `mcp.json` (Cursor, Claude Desktop with remote support, and other MCP cl
 | `jp_company_verify` | $0.005 | Verify a Japanese company by name, 13-digit corporate number (法人番号), or address against the NTA registry. |
 | `jp_invoice_registration_verify` | $0.01 | Verify a Japanese qualified-invoice registration number (T + 13 digits) against the NTA invoice registry. |
 | `jp_invoice_issuer_check` | $0.03 | Verify a T-number and compare the issuer name and address with Japan's NTA registries. |
+| `jp_invoice_issuer_match` | $0.05 | Match an invoice issuer (structured fields) to the supplier's expected T-number or corporate number from your master data; invoice, expected and registry values stay separate. |
+| `jp_invoice_issuer_match_extract` | $0.10 | Read a Japanese invoice (text, HTTPS file URL, or small Base64), then match its issuer to the supplier's expected T-number or corporate number. |
 | `jp_invoice_extract` | $0.01 | OCR a Japanese billing invoice (text, HTTPS file URL, or small Base64) with local date, tax, arithmetic and T-number checks; no registry lookup. |
 | `jp_invoice_extract_and_verify` | $0.05 | OCR a Japanese billing invoice, validate it locally, and resolve the issuer against NTA registries. |
 | `jp_receipt_extract` | $0.03 | OCR a Japanese receipt with local amount, tax and T-number checks; detected T-numbers are verified with the NTA registry. |
@@ -97,6 +99,8 @@ Third-party services are listed for convenience only. JPVerify is not affiliated
 | `jp_company_verify` | $0.005 | 会社名・法人番号・住所を国税庁の法人番号公表データと照合します。 |
 | `jp_invoice_registration_verify` | $0.01 | 適格請求書発行事業者登録番号（T+13桁）を国税庁データと照合します。 |
 | `jp_invoice_issuer_check` | $0.03 | T番号を検証し、発行者名・住所を国税庁データと比較します。 |
+| `jp_invoice_issuer_match` | $0.05 | 構造化済みの請求書の発行者情報を、仕入先マスターの照合用T番号・法人番号および国税庁の登録情報と照合します。 |
+| `jp_invoice_issuer_match_extract` | $0.10 | 日本語の請求書を読み取り、発行者を仕入先マスターの照合用T番号・法人番号と照合します。 |
 | `jp_invoice_extract` | $0.01 | 日本語請求書をOCRし、日付・税額・金額・T番号をローカル検証します（法人照合なし）。 |
 | `jp_invoice_extract_and_verify` | $0.05 | 日本語請求書をOCR・ローカル検証し、発行者を国税庁データと照合します。 |
 | `jp_receipt_extract` | $0.03 | 日本語領収書をOCRし、金額・税額・T番号を検証します。 |
