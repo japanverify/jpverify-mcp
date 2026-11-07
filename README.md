@@ -74,6 +74,15 @@ Example tool call:
 - **HTTP API:** OpenAPI `https://api.jpverify.com/openapi.json`, x402 catalog `https://api.jpverify.com/.well-known/x402.json`, agent guide `https://api.jpverify.com/skill.md`
 - Batch verification, async batch jobs, JP PINT validation, FSA regulated-entity checks and EDINET filings are available over the HTTP API only.
 
+## Complementary checks
+
+JPVerify confirms who a Japanese counterparty is (corporate number, T-number, address). It does not screen sanctions lists. If your onboarding flow also needs sanctions screening, run it as a separate step on the resolved name:
+
+- Use the **official English or romanized name** from the corporate-number record. Most sanctions lists are matched on Latin-script names and aliases, so Japanese script often finds nothing even when an entry exists.
+- Check official sources such as [OFAC Sanctions List Search](https://sanctionssearch.ofac.treas.gov/), or a screening tool. One that runs on the same x402 rail (USDC on Base) is AgentReader's [`/sanctions-batch`](https://github.com/grokbot1233/agentreader#pairs-well-with), which checks OFAC, UK, UN and EU lists and has a free preview.
+
+Third-party services are listed for convenience only. JPVerify is not affiliated with them and does not endorse or verify their results. Confirm any potential match with the issuing authority.
+
 ## 日本語
 
 日本企業の照合と日本語書類OCRのためのリモートMCPサーバーです。国税庁の法人番号・適格請求書（T番号）照合、住所の正規化・検証、請求書・領収書・名刺OCR、仕入先確認、EU VAT／Peppolの取引先確認に対応します。
@@ -98,6 +107,8 @@ Example tool call:
 | `jp_counterparty_check` | $0.05 | 既知のEU VAT IDやPeppol参加者IDの有効性・名称一致・到達性を確認します。 |
 
 不正な入力は支払い前に拒否され、失敗した呼び出しは課金されません。照合結果は公開データに基づく事前確認であり、KYB、AML、制裁リスト審査、法務・税務上の助言ではありません。
+
+制裁リスト審査が必要な場合は、法人番号データの英語表記またはローマ字表記の名称を使い、別の手順として実施してください（多くの制裁リストはラテン文字の名称で照合されます）。審査先の例は英語版の [Complementary checks](#complementary-checks) を参照してください。第三者サービスは参考として掲載しており、JPVerifyとの提携や推奨を意味するものではありません。
 
 ## License
 
