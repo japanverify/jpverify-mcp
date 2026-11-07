@@ -3,10 +3,10 @@
   "name": "com.jpverify/jpverify",
   "title": "JPVerify",
   "description": "Japan company, T-number, address and invoice/receipt/card OCR checks, paid per call via x402.",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "websiteUrl": "https://www.jpverify.com",
   "repository": {
-    "url": "https://github.com/luoxia001/jpverify-mcp",
+    "url": "https://github.com/japanverify/jpverify-mcp",
     "source": "github"
   },
   "icons": [
