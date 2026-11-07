@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.jpverify/jpverify",
+  "title": "JPVerify",
+  "description": "Japan company, T-number, address and invoice/receipt/card OCR checks, paid per call via x402.",
+  "version": "0.5.1",
+  "websiteUrl": "https://www.jpverify.com",
+  "repository": {
+    "url": "https://github.com/luoxia001/jpverify-mcp",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://www.jpverify.com/logo-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.jpverify.com/mcp"
+    }
+  ]
+}
