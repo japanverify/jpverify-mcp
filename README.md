@@ -52,7 +52,7 @@ Generic `mcp.json` (Cursor, Claude Desktop with remote support, and other MCP cl
 | `jp_invoice_extract` | $0.01 | OCR a Japanese billing invoice (text, HTTPS file URL, or small Base64) with local date, tax, arithmetic and T-number checks; no registry lookup. |
 | `jp_supplier_resolve` | $0.01 | One coverage-aware supplier check combining company, qualified-invoice and address evidence. |
 | `jp_company_verify` | $0.005 | Verify a Japanese company by name, 13-digit corporate number (法人番号), or address against the NTA registry. |
-| `jp_address_normalize` | $0.005 | Normalize a Japanese address into a canonical hierarchy (prefecture to room) with the confirmed match level and warnings. |
+| `jp_address_normalize` | $0.005 | Normalize a Japanese address into a canonical hierarchy (prefecture to room) with the confirmed match level and an English rendering from Japan Post romanized data. |
 | `jp_address_validate` | $0.005 | Validate a Japanese address with parser, postal and geocoder evidence and return exact/partial/ambiguous/conflict/unverified. |
 
 All tools are read-only (`readOnlyHint: true`). Registry results are a public-data pre-check, not KYB, AML, sanctions screening, or legal or tax advice.
@@ -109,7 +109,7 @@ Third-party services are listed for convenience only. JPVerify is not affiliated
 | `jp_invoice_extract` | $0.01 | 日本語請求書をOCRし、日付・税額・金額・T番号をローカル検証します（法人照合なし）。 |
 | `jp_supplier_resolve` | $0.01 | 会社・適格請求書・住所の根拠をまとめて仕入先を確認します。 |
 | `jp_company_verify` | $0.005 | 会社名・法人番号・住所を国税庁の法人番号公表データと照合します。 |
-| `jp_address_normalize` | $0.005 | 日本の住所を正規化し、都道府県から部屋番号までの階層と照合レベル・警告を返します。 |
+| `jp_address_normalize` | $0.005 | 日本の住所を正規化し、都道府県から部屋番号までの階層・照合レベルと、日本郵便のローマ字データによる英語表記を返します。 |
 | `jp_address_validate` | $0.005 | 住所解析・郵便番号・ジオコーディング根拠で日本住所を検証します。 |
 
 不正な入力は支払い前に拒否され、失敗した呼び出しは課金されません。照合結果は公開データに基づく事前確認であり、KYB、AML、制裁リスト審査、法務・税務上の助言ではありません。
