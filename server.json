@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.jpverify/jpverify",
   "title": "JPVerify",
-  "description": "Japan company, T-number, address and invoice/receipt/card OCR checks, paid per call via x402.",
-  "version": "0.5.2",
+  "description": "Japan company, T-number, invoice issuer and address checks for AI agents, paid per call via x402.",
+  "version": "0.6.0",
   "websiteUrl": "https://www.jpverify.com",
   "repository": {
     "url": "https://github.com/japanverify/jpverify-mcp",
