@@ -4,7 +4,7 @@
 
 <img src="https://www.jpverify.com/logo-512.png" alt="JPVerify" width="96" align="right">
 
-Remote MCP server for Japanese business identity checks and Japanese document OCR: identify a Japanese company from an English or brand name, English address, website domain or identifier, NTA corporate-number and qualified-invoice (T-number) verification, address normalization and validation, invoice / receipt / business-card OCR with input-tax-credit eligibility, and supplier resolution. Japan only.
+Remote MCP server for Japanese business identity checks: identify a Japanese company from an English or brand name, English address, website domain or identifier, NTA corporate-number and qualified-invoice (T-number) verification, invoice issuer checks (registration on the invoice date, supplier master data), address normalization and validation, and supplier resolution. JPVerify does not read files: send the fields you read. Japan only.
 
 - **Endpoint (Streamable HTTP):** `https://api.jpverify.com/mcp` — no account, no API key
 - **Official MCP Registry:** `com.jpverify/jpverify`
@@ -41,14 +41,8 @@ Generic `mcp.json` (Cursor, Claude Desktop with remote support, and other MCP cl
 |---|---|---|
 | `jpverify_guide` | free | Tool catalog, prices, example inputs; recommends a tool for a question |
 | `jp_entity_resolve` | $0.25 | Identify a Japanese company from an English, brand or romanized name (with an English address, postal code or prefecture), a website or e-mail domain, T-number, corporate number, LEI or securities code; returns the legally binding Japanese name, kana, English name with its source, status and qualified-invoice registration, in English. |
-| `jp_invoice_issuer_match_extract` | $0.10 | Read a Japanese invoice (text, HTTPS file URL, or small Base64), then match its issuer to the supplier's expected T-number or corporate number, and judge input-tax-credit eligibility. |
 | `jp_supplier_resolve` | $0.10 | One coverage-aware supplier check combining company, qualified-invoice and address evidence; each check reports English address completeness. |
-| `jp_invoice_extract_and_verify` | $0.10 | OCR a Japanese billing invoice, validate it locally, resolve the issuer against NTA registries, and judge input-tax-credit eligibility (eligible / not_eligible / needs_review). |
-| `jp_invoice_issuer_match` | $0.05 | Match an invoice issuer (structured fields) to the supplier's expected T-number or corporate number from your master data; invoice, expected and registry values stay separate. |
-| `jp_business_card_extract` | $0.03 (default) / $0.10 (enrich) | Read a Japanese business card (front/back HTTPS image URL or small Base64); enrich=true adds a registry pre-check of the organization. |
-| `jp_invoice_issuer_check` | $0.03 | Verify a T-number and compare the issuer name and address with Japan's NTA registries. |
-| `jp_receipt_extract` | $0.03 | OCR a Japanese receipt with local amount, tax and T-number checks; detected T-numbers are verified with the NTA registry. |
-| `jp_invoice_extract` | $0.03 | OCR a Japanese billing invoice (text, HTTPS file URL, or small Base64) with local date, tax, arithmetic and T-number checks; no registry lookup. |
+| `jp_invoice_issuer_check` | $0.05 | Check a T-number against the issuer name on an invoice, the address (optional), the invoice date (optional: registered on that date, not cancelled or expired) and your supplier master number (optional: catches invoices from another company). JPVerify does not read files. |
 | `jp_invoice_registration_verify` | $0.01 | Verify a Japanese qualified-invoice registration number (T + 13 digits) against the NTA invoice registry. |
 | `jp_company_verify` | $0.01 | Verify a Japanese company by its registered (Japanese) name or 13-digit corporate number (法人番号) against the NTA registry; an address is comparison evidence only. An English name that is not found returns `english_name_not_in_registry_index` — use `jp_entity_resolve` for English names. |
 | `jp_address_normalize` | $0.005 | Normalize a Japanese address into a canonical hierarchy (prefecture to room) with the confirmed match level and an English rendering from Japan Post romanized data. |
@@ -89,7 +83,7 @@ Third-party services are listed for convenience only. JPVerify is not affiliated
 
 ## 日本語
 
-日本企業の照合と日本語書類OCRのためのリモートMCPサーバーです。英語名や識別番号からの日本法人の特定、国税庁の法人番号・適格請求書（T番号）照合、住所の正規化・検証、請求書・領収書・名刺OCR（仕入税額控除の可否判定を含む）、仕入先確認に対応します。日本専用です。
+日本企業の照合のためのリモートMCPサーバーです。英語名や識別番号からの日本法人の特定、国税庁の法人番号・適格請求書（T番号）照合、請求書の発行者確認（請求書日付時点の登録・仕入先マスター照合）、住所の正規化・検証、仕入先確認に対応します。ファイルの読み取りは行いません。日本専用です。
 
 - **エンドポイント（Streamable HTTP）：** `https://api.jpverify.com/mcp`（アカウント・APIキー不要）
 - **決済：** x402（Base上のUSDC）。成功した呼び出しのみ課金
@@ -99,14 +93,8 @@ Third-party services are listed for convenience only. JPVerify is not affiliated
 |---|---|---|
 | `jpverify_guide` | 無料 | ツール一覧・料金・入力例。質問に合うツールを推薦 |
 | `jp_entity_resolve` | $0.25 | 英語名・ブランド名・ローマ字（英語住所・郵便番号・都道府県付き）、Webサイト／メールのドメイン、T番号、法人番号、LEI、証券コードから日本の法人を特定し、正式な日本語商号・読み・出典付き英語名・状態・適格請求書登録を英語で返します。 |
-| `jp_invoice_issuer_match_extract` | $0.10 | 日本語の請求書を読み取り、発行者を仕入先マスターの照合用T番号・法人番号と照合し、仕入税額控除の可否を判定します。 |
 | `jp_supplier_resolve` | $0.10 | 会社・適格請求書・住所の根拠をまとめて仕入先を確認します。英語住所の完全性も返します。 |
-| `jp_invoice_extract_and_verify` | $0.10 | 日本語請求書をOCR・ローカル検証し、発行者を国税庁データと照合して、仕入税額控除の可否を判定します。 |
-| `jp_invoice_issuer_match` | $0.05 | 構造化済みの請求書の発行者情報を、仕入先マスターの照合用T番号・法人番号および国税庁の登録情報と照合します。 |
-| `jp_business_card_extract` | $0.03 (default) / $0.10 (enrich) | 日本語の名刺を読み取ります。enrich=trueで組織の法人照合も行います。 |
-| `jp_invoice_issuer_check` | $0.03 | T番号を検証し、発行者名・住所を国税庁データと比較します。 |
-| `jp_receipt_extract` | $0.03 | 日本語領収書をOCRし、金額・税額・T番号を検証します。 |
-| `jp_invoice_extract` | $0.03 | 日本語請求書をOCRし、日付・税額・金額・T番号をローカル検証します（法人照合なし）。 |
+| `jp_invoice_issuer_check` | $0.05 | T番号を請求書の発行者名・住所（任意）・日付（任意。その日に登録済みで取消・失効前か）・仕入先マスターの番号（任意）と照合します。ファイルの読み取りは行いません。 |
 | `jp_invoice_registration_verify` | $0.01 | 適格請求書発行事業者登録番号（T+13桁）を国税庁データと照合します。 |
 | `jp_company_verify` | $0.01 | 登記上の会社名（日本語）または法人番号を国税庁の法人番号公表データと照合します。住所は比較用の根拠です。英語名は `jp_entity_resolve` を使用してください。 |
 | `jp_address_normalize` | $0.005 | 日本の住所を正規化し、都道府県から部屋番号までの階層・照合レベルと、日本郵便のローマ字データによる英語表記を返します。 |
